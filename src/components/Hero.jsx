@@ -1,64 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { resumeData } from '../utils/resumeData';
-import { Mail } from 'lucide-react';
-
-const GithubIcon = ({ size }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', marginRight: '0.5rem', verticalAlign: 'text-bottom' }}>
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-  </svg>
-);
-
-const LinkedinIcon = ({ size }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', marginRight: '0.5rem', verticalAlign: 'text-bottom' }}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
 
 export default function Hero() {
-  const { name, role, summary, location, email, github, linkedin } = resumeData.personalInfo;
-  const fullSummary = resumeData.summary;
+  const { name, role } = resumeData.personalInfo;
 
   return (
-    <section id="home" className="container" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
-      <div style={{ maxWidth: '800px', zIndex: 10 }}>
+    <section 
+      id="home" 
+      style={{ 
+        backgroundImage: 'url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      <div className="bg-overlay" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 100%)' }}></div>
+      
+      <div className="container" style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
         >
-          <h3 className="text-gradient" style={{ marginBottom: '1rem', letterSpacing: '2px' }}>
-            {role.toUpperCase()}
-          </h3>
-          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 1.1, marginBottom: '1.5rem' }}>
-            Hi, I'm <br />
-            <span className="text-gradient">{name}</span>
+          <h1 style={{ margin: 0, fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
+            {name.split(' ')[0]} <br />
+            <span style={{ color: 'var(--color-text)' }}>{name.split(' ').slice(1).join(' ')}</span>
           </h1>
-          <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '600px' }}>
-            {fullSummary}
-          </p>
+          <h3 style={{ color: 'var(--color-text-muted)', marginTop: '0.5rem', marginBottom: '2.5rem', letterSpacing: '4px' }}>
+            {role}
+          </h3>
           
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
-            <a href={`mailto:${email}`} className="btn btn-primary">
-              <Mail size={18} style={{ display: 'inline', marginRight: '0.5rem', verticalAlign: 'text-bottom' }}/> 
-              Contact Me
-            </a>
-            <a href={`https://${github}`} target="_blank" rel="noreferrer" className="btn btn-outline">
-              <GithubIcon size={18} />
-              GitHub
-            </a>
-            <a href={`https://${linkedin}`} target="_blank" rel="noreferrer" className="btn btn-outline">
-              <LinkedinIcon size={18} />
-              LinkedIn
-            </a>
-          </div>
-
-          <div className="glass-panel" style={{ display: 'inline-block', padding: '1rem 2rem' }}>
-            <p style={{ margin: 0, color: 'var(--color-accent-primary)' }}>
-              📍 {location}
-            </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <a href="#resume" className="btn btn-outline">Resume</a>
+            <a href="#portfolio" className="btn btn-outline">Portfolio</a>
+            <a href={`https://${resumeData.personalInfo.github}`} target="_blank" rel="noreferrer" className="btn btn-outline">GitHub</a>
+            <a href={`https://${resumeData.personalInfo.linkedin}`} target="_blank" rel="noreferrer" className="btn btn-outline">LinkedIn</a>
           </div>
         </motion.div>
       </div>

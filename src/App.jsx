@@ -1,69 +1,77 @@
 import React from 'react';
 import CanvasContainer from './components/CanvasContainer';
 import Hero from './components/Hero';
-import Experience from './components/Experience';
+import About from './components/About';
+import Resume from './components/Resume';
 import Projects from './components/Projects';
-import Skills from './components/Skills';
+import { resumeData } from './utils/resumeData';
 
 function App() {
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-      {/* 3D Background */}
-      <CanvasContainer />
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
+      {/* 3D Background - Keep it subtle behind everything */}
+      <div style={{ opacity: 0.6, position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+        <CanvasContainer />
+      </div>
       
-      {/* Navigation (Simple top bar) */}
+      {/* Clean Navigation Bar matching the reference */}
       <nav style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',
-        padding: '1.5rem 2rem',
+        padding: '2rem 4rem',
         zIndex: 100,
-        background: 'linear-gradient(to bottom, rgba(5,5,5,0.8), transparent)',
-        backdropFilter: 'blur(4px)',
+        background: 'linear-gradient(to bottom, rgba(5,5,5,0.9), transparent)',
         display: 'flex',
-        justifyContent: 'flex-end',
-        gap: '2rem'
+        justifyContent: 'space-between',
+        alignItems: 'center'
       }}>
-        {['home', 'experience', 'projects', 'skills'].map((item) => (
-          <a 
-            key={item}
-            href={`#${item}`} 
-            style={{ 
-              color: 'var(--color-text-muted)', 
-              textDecoration: 'none', 
-              textTransform: 'uppercase',
-              fontSize: '0.85rem',
-              letterSpacing: '1px',
-              transition: 'color 0.3s'
-            }}
-            onMouseOver={(e) => e.target.style.color = 'var(--color-accent-primary)'}
-            onMouseOut={(e) => e.target.style.color = 'var(--color-text-muted)'}
-          >
-            {item}
-          </a>
-        ))}
+        <div style={{ display: 'flex', gap: '2rem' }}>
+          {['home', 'about', 'resume', 'projects'].map((item) => (
+            <a 
+              key={item}
+              href={`#${item}`} 
+              style={{ 
+                color: item === 'home' ? 'var(--color-accent-primary)' : 'var(--color-text)', 
+                textDecoration: 'none', 
+                fontWeight: '600',
+                fontSize: '0.9rem',
+                textTransform: 'capitalize',
+                transition: 'color 0.3s'
+              }}
+              onMouseOver={(e) => e.target.style.color = 'var(--color-accent-primary)'}
+              onMouseOut={(e) => e.target.style.color = item === 'home' ? 'var(--color-accent-primary)' : 'var(--color-text)'}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+        <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>
+          <span style={{ marginRight: '0.5rem' }}>📱</span> 
+          {/* Using resumeData phone number */}
+          {resumeData.personalInfo.phone}
+        </div>
       </nav>
 
-      {/* Main Content */}
+      {/* Main Content Sections */}
       <main style={{ position: 'relative', zIndex: 10 }}>
         <Hero />
-        <Experience />
+        <About />
+        <Resume />
         <Projects />
-        <Skills />
       </main>
 
-      {/* Footer */}
       <footer style={{ 
         textAlign: 'center', 
-        padding: '2rem', 
+        padding: '3rem', 
         color: 'var(--color-text-muted)',
-        borderTop: '1px solid var(--color-glass-border)',
+        borderTop: '1px solid var(--color-border)',
         position: 'relative',
         zIndex: 10,
-        marginTop: '2rem'
+        backgroundColor: 'var(--color-bg)'
       }}>
-        <p>© {new Date().getFullYear()} Harishraj K. Built with React & Three.js.</p>
+        <p style={{ margin: 0, fontSize: '0.9rem' }}>© {new Date().getFullYear()} Harishraj K. Design integrated with 3D elements.</p>
       </footer>
     </div>
   );
