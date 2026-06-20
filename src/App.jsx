@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Resume from './components/Resume';
 import Projects from './components/Projects';
+import Contact from './components/Contact';
 import { resumeData } from './utils/resumeData';
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
         alignItems: 'center'
       }}>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {['home', 'about', 'resume', 'projects'].map((item) => (
+          {['home', 'about', 'resume', 'projects', 'contact'].map((item) => (
             <a 
               key={item}
               href={`#${item}`} 
@@ -47,11 +48,6 @@ function App() {
             </a>
           ))}
         </div>
-        <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>
-          <span style={{ marginRight: '0.5rem' }}>📱</span> 
-          {/* Using resumeData phone number */}
-          {resumeData.personalInfo.phone}
-        </div>
       </nav>
 
       {/* Main Content Sections */}
@@ -60,6 +56,7 @@ function App() {
         <About />
         <Resume />
         <Projects />
+        <Contact />
       </main>
 
       <footer style={{ 
@@ -71,7 +68,7 @@ function App() {
         zIndex: 10,
         backgroundColor: 'var(--color-bg)'
       }}>
-        <p style={{ margin: 0, fontSize: '0.9rem' }}>© {new Date().getFullYear()} Harishraj K. Design integrated with 3D elements.</p>
+        <p style={{ margin: 0, fontSize: '0.9rem' }}>© {new Date().getFullYear()} Harishraj K. Artificial Intelligence & Data Science Developer.</p>
       </footer>
     </div>
   );

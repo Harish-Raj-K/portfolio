@@ -24,8 +24,7 @@ export default function Hero() {
           transition={{ duration: 1 }}
         >
           <h1 style={{ margin: 0, fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>
-            {name.split(' ')[0]} <br />
-            <span style={{ color: 'var(--color-text)' }}>{name.split(' ').slice(1).join(' ')}</span>
+            HARISH RAJ.K
           </h1>
           <h3 style={{ color: 'var(--color-text-muted)', marginTop: '0.5rem', marginBottom: '2.5rem', letterSpacing: '4px' }}>
             {role}
